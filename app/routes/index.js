@@ -16,20 +16,33 @@ module.exports = function (app, passport) {
 	var clickHandler = new ClickHandler();
 
 	app.route('/')
-		.get(isLoggedIn, function (req, res) {
+		.get(function (req, res) {
 			res.sendFile(path + '/public/index.html');
 		});
 
-	app.route('/login')
-		.get(function (req, res) {
-			res.sendFile(path + '/public/login.html');
-		});
+  app.get('/login/twitter',
+    passport.authenticate('twitter'));
 
-	app.route('/logout')
-		.get(function (req, res) {
-			req.logout();
-			res.redirect('/login');
-		});
+  app.get('/login/twitter/return',
+    passport.authenticate('twitter', { failureRedirect: '/' }),
+    function(req, res) {
+      res.redirect('/');
+    });
+
+  app.get('/logout',
+    function(req, res) {
+      req.session.destroy();
+      res.redirect('/');
+    });
+
+	app.route('/api/islogged')
+	  .get(function(req, res) {
+	    if (typeof req.user !== 'undefined') {
+	      res.json({ islogged: true, user: req.user });
+	    } else {
+	      res.json({ islogged: false });
+	    }
+	  });
 
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {

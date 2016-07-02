@@ -1,39 +1,41 @@
-<!DOCTYPE html>
-
-<html>
-
+<!doctype html>
+<html ng-app="pintitApp">
 	<head>
-		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
-		
+		<meta charset="utf-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<title>PintIt - Publish your favorites pictures and other stuffs!</title>
+		<link href="/public/css/spectre.css" rel="stylesheet" type="text/css">
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+		<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet"/><!-- font awesome -->
+		<!-- Angular -->
+		<script src="/public/js/angular.min.js"></script><!-- load angular -->
+		<script src="/public/js/angular-route.min.js"></script><!-- load ng-route -->
 	</head>
-
-	<header>
-		<p>Welcome, <span id="display-name"></span>!</p>
-		<a class="menu" href="/profile">Profile</a>
-		<p>|</p>
-		<a class="menu" href="/logout">Logout</a>
-	</header>
-
 	<body>
+		<div ng-controller="loginController">
+			<!-- Menu -->
+			<header class="navbar">
+				<section class="navbar-section">
+					<a href="#/" class="btn btn-link btn-lg"><i class="fa fa-home"></i></a>
+					<a href="#/" class="navbar-brand hide-sm">PintIt</a>
+				</section>
+				<section class="navbar-section">
+					<a ng-hide="!login.in" href="#/my" class="btn btn-link">My Wall</a>
+					<span ng-hide="login.in" class="hide-sm">Welcome, Do I know you?</span>
+					<span ng-hide="!login.in" class="hide-sm">Welcome, {{ user.twitter.name }}!</span>
+					<a href="/login/twitter" ng-hide="login.in" id="btn_signin" class="btn btn-primary"><i class="fa fa-twitter"></i> Sign In</a>
+					<a href="/logout" ng-show="login.in" id="btn_logout" class="btn btn-primary"></i>Logout</a>
+				</section>
+			</header>
+		<div>
+		<div ng-view></div>
+		<br />
 		<div class="container">
-			<img src="/public/img/clementine_150.png" />
-			<br />
-			<p class="clementine-text">Clementine.js</p>
+			<p class="text-center">developed by <a href="https://codepen.io/mirabalj" target="_blank" class="credits">@mirabalj</a></p>
 		</div>
-	
-		<div class="container">
-			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
-			<br />
-			<div class="btn-container">
-				<button type="submit" class="btn btn-add">CLICK ME!</button>
-				<button class="btn btn-delete">RESET</button>
-			</div>
-		</div>
-		
-		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
-		<script type="text/javascript" src="controllers/userController.client.js"></script>
+		<script src="/public/js/jquery.min.js"></script>
+		<script src="/controllers/mainController.client.js"></script><!-- Main Controller -->
+		<script src="/controllers/restService.client.js"></script><!-- Login Controller -->
+		<script src="/controllers/loginController.client.js"></script><!-- Login Controller -->
 	</body>
-
 </html>
