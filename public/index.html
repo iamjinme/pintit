@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<title>PintIt - Publish your favorites pictures and other stuffs!</title>
+		<title>PintIt - Publish your favorites pictures {and other stuffs}</title>
 		<link href="/public/css/spectre.css" rel="stylesheet" type="text/css">
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 		<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet"/><!-- font awesome -->
@@ -21,8 +21,8 @@
 				</section>
 				<section class="navbar-section">
 					<a ng-hide="!login.in" href="#/my" class="btn btn-link">My Wall</a>
-					<span ng-hide="login.in" class="hide-sm">Welcome, Do I know you?</span>
-					<span ng-hide="!login.in" class="hide-sm">Welcome, {{ user.twitter.name }}!</span>
+					<span ng-hide="login.in">Welcome, Do I know you?</span>
+					<span ng-hide="!login.in">Welcome, {{ user.twitter.name }}!</span>
 					<a href="/login/twitter" ng-hide="login.in" id="btn_signin" class="btn btn-primary"><i class="fa fa-twitter"></i> Sign In</a>
 					<a href="/logout" ng-show="login.in" id="btn_logout" class="btn btn-primary"></i>Logout</a>
 				</section>
@@ -37,5 +37,6 @@
 		<script src="/controllers/mainController.client.js"></script><!-- Main Controller -->
 		<script src="/controllers/restService.client.js"></script><!-- Login Controller -->
 		<script src="/controllers/loginController.client.js"></script><!-- Login Controller -->
+		<script src="//masonry.desandro.com/masonry.pkgd.js"></script><!-- Masonry Grid -->
 	</body>
 </html>

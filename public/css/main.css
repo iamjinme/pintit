@@ -1,3 +1,5 @@
+* { box-sizing: border-box; }
+
 .navbar {
   background: #DC3522;
 }
@@ -24,4 +26,50 @@
 
 .container a:hover {
   color: #FFF;
+}
+
+/* Grid */
+.grid {
+  background: #D9CB9E;
+  max-width: 1200px;
+  padding: 5px;
+}
+
+/* Clearfix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* Items grid */
+.grid-item {
+  width: 160px;
+  min-height: 120px;
+  float: left;
+  background: #DC3522;
+  border: 2px solid #D9CB9E;
+  border-radius: 5px;
+}
+
+/* Grid elements */
+.grid-title {
+  color: #1E1E20;
+  font-size: 2em;
+  padding: 0 5px 0 5px;
+}
+
+.grid-description {
+  color: #D9CB9E;
+  font-size: 1.2em;
+  padding: 0 5px 0 5px;
+}
+
+.grid-group {
+  padding-right: 5px;
+  float: right;
+}
+
+.grid-group .btn {
+  padding: 5px;
 }

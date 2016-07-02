@@ -25,5 +25,11 @@ pintitApp.config(['$locationProvider' ,'$routeProvider',
 ]);
 // Define the main controller on the app module
 pintitApp.controller('mainController', function mainController($scope, $http) {
-  // Any functions
+  // Load Masonry Grid
+  angular.element(document).ready(function () {
+    $('.grid').masonry({
+      itemSelector: '.grid-item',
+      columnWidth: 160
+    });
+  });
 });
