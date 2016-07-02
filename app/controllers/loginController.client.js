@@ -9,6 +9,10 @@ pintitApp.controller('loginController', function loginController($scope, $http, 
     message: '',
     error: false
   };
+  // Show Modal
+  $scope.showAddPin = function() {
+    $('#add_modal').addClass('active');
+  }
   // Verify Login
   rest.getIsLogged().then(function(data) {
     if (data.islogged) {

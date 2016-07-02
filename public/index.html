@@ -21,6 +21,7 @@
 				</section>
 				<section class="navbar-section">
 					<a ng-hide="!login.in" href="#/my" class="btn btn-link">My Wall</a>
+					<a ng-hide="!login.in" ng-click="showAddPin()" class="btn btn-link"><i class="fa fa-plus-circle"></i></a>
 					<span ng-hide="login.in">Welcome, Do I know you?</span>
 					<span ng-hide="!login.in">Welcome, {{ user.twitter.name }}!</span>
 					<a href="/login/twitter" ng-hide="login.in" id="btn_signin" class="btn btn-primary"><i class="fa fa-twitter"></i> Sign In</a>
@@ -28,6 +29,42 @@
 				</section>
 			</header>
 		<div>
+			<!-- Add Pin modal -->
+			<div id="add_modal" class="modal modal-sm" ng-controller="addController">
+				<div class="modal-overlay"></div>
+				<div class="modal-container" role="document">
+					<div class="modal-header">
+						<button type="button" class="btn btn-clear float-right" data-modal='#add_modal' aria-label="Close"></button>
+						<div class="modal-title">Add Pin!</div>
+					</div>
+					<div id="add_message" ng-show="add_message" class="toast-message">
+							<button class="btn btn-clear float-right"></button>
+							{{ add_message }}
+					</div>
+					<div class="modal-body">
+						<div class="content">
+							<img src="/public/img/blank.png" class="img-responsive centered" />
+							<br />
+							<form id="add_form">
+								<div class="form-group">
+									<label class="form-label" for="title">Title</label>
+									<input class="form-input" type="text" name="title" ng-model="title" placeholder="What about this?" />
+								</div>
+								<div class="form-group">
+									<label class="form-label" for="src">Source</label>
+									<input class="form-input" type="text" name="src" ng-model="src" placeholder="HTTP link" />
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="btn-group btn-group-block">
+							<button class="btn" id="modal_close">Close</button>
+							<button class="btn btn-primary" id="btn_submit">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		<div ng-view></div>
 		<br />
 		<div class="container">
@@ -37,6 +74,7 @@
 		<script src="/controllers/mainController.client.js"></script><!-- Main Controller -->
 		<script src="/controllers/restService.client.js"></script><!-- Login Controller -->
 		<script src="/controllers/loginController.client.js"></script><!-- Login Controller -->
-		<script src="//masonry.desandro.com/masonry.pkgd.js"></script><!-- Masonry Grid -->
+		<script src="/controllers/addController.client.js"></script><!-- Add Pin Controller -->
+		<script src="/public/js/masonry.pkgd.js"></script><!-- Masonry Grid -->
 	</body>
 </html>
