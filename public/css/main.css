@@ -28,10 +28,14 @@
   color: #FFF;
 }
 
+.modal-header {
+  background: #DC3522;
+  color: #D9CB9E;
+}
+
 /* Grid */
 .grid {
   background: #D9CB9E;
-  max-width: 1200px;
   padding: 5px;
 }
 
@@ -54,15 +58,9 @@
 
 /* Grid elements */
 .grid-title {
-  color: #1E1E20;
-  font-size: 2em;
-  padding: 0 5px 0 5px;
-}
-
-.grid-description {
   color: #D9CB9E;
   font-size: 1.2em;
-  padding: 0 5px 0 5px;
+  padding: 5px 5px 0 5px;
 }
 
 .grid-group {
