@@ -5,6 +5,24 @@ var Pin = require('../models/pins.js');
 
 function PintIt () {
 
+  this.delPin = function(req, res) {
+    // Or req.isAuthenticated()
+		if (req.user) {
+			var id = req.params.id;
+			Movie.findOne({ 'user.id': req.user.twitter.id, '_id': id }, function(err, result) {
+	    	if (err) throw err;
+				if (result) {
+					result.remove();
+					res.json(result);
+				} else {
+					res.json({ error: true, message: 'Pin not found'});
+				}
+	    });
+		} else {
+			res.json({ error: true, message: 'Unauthorized'});
+		}
+	}
+
   this.getPinUser = function(req, res) {
     var id = req.params.id;
     Pin
