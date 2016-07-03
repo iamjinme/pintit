@@ -48,4 +48,7 @@ module.exports = function (app, passport) {
 		.post(pintIt.addPin)
 		.get(pintIt.getPinAll);
 
+	app.route('/api/user/:id/pin')
+		.get(pintIt.getPinUser);
+
 };

@@ -5,6 +5,16 @@ var Pin = require('../models/pins.js');
 
 function PintIt () {
 
+  this.getPinUser = function(req, res) {
+    var id = req.params.id;
+    Pin
+      .find({'user.id': id }, { __v: false })
+      .sort({'date': -1})
+      .exec(function(err, pins) {
+        res.json(pins);
+      });
+  };
+
   this.getPinAll = function(req, res) {
     console.log(req.isAuthenticated());
     Pin
