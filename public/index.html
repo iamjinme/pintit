@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<title>PintIt - Publish your favorites pictures {and other stuffs}</title>
+		<title>PintIt - Publish your favorites pictures {and other stuff}</title>
 		<link href="/public/css/spectre.css" rel="stylesheet" type="text/css">
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 		<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet"/><!-- font awesome -->
@@ -37,7 +37,7 @@
 						<button type="button" class="btn btn-clear float-right" data-modal='#add_modal' aria-label="Close"></button>
 						<div class="modal-title">Add Pin!</div>
 					</div>
-					<div id="add_message" ng-show="add_message" class="toast-message">
+					<div id="add_message" class="toast-message hide">
 							<button class="btn btn-clear float-right"></button>
 							{{ add_message }}
 					</div>
@@ -60,7 +60,7 @@
 					<div class="modal-footer">
 						<div class="btn-group btn-group-block">
 							<button class="btn" id="modal_close">Close</button>
-							<button class="btn btn-primary" id="btn_submit">Save</button>
+							<button class="btn btn-primary" ng-click="addPin()">Save</button>
 						</div>
 					</div>
 				</div>

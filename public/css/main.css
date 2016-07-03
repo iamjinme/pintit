@@ -33,6 +33,12 @@
   color: #D9CB9E;
 }
 
+.toast-message {
+  background: #E85600;
+  padding: 10px 15px 10px 15px;
+  color: #fff;
+}
+
 /* Grid */
 .grid {
   background: #D9CB9E;

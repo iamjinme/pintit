@@ -1,9 +1,11 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var PintIt = require(path + '/app/controllers/pintIt.server.js');
 
 module.exports = function (app, passport) {
+
+	var pintIt = new PintIt();
 
 	function isLoggedIn (req, res, next) {
 		if (req.isAuthenticated()) {
@@ -12,8 +14,6 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		}
 	}
-
-	var clickHandler = new ClickHandler();
 
 	app.route('/')
 		.get(function (req, res) {
@@ -44,27 +44,8 @@ module.exports = function (app, passport) {
 	    }
 	  });
 
-	app.route('/profile')
-		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/profile.html');
-		});
+	app.route('/api/pin')
+		.post(pintIt.addPin)
+		.get(pintIt.getPinAll);
 
-	app.route('/api/:id')
-		.get(isLoggedIn, function (req, res) {
-			res.json(req.user.github);
-		});
-
-	app.route('/auth/github')
-		.get(passport.authenticate('github'));
-
-	app.route('/auth/github/callback')
-		.get(passport.authenticate('github', {
-			successRedirect: '/',
-			failureRedirect: '/login'
-		}));
-
-	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
 };

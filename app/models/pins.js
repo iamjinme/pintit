@@ -7,7 +7,10 @@ var Pin = new Schema({
   title: String,
   src: String,
   date: Date,
-  user_id: Number,
+  user: {
+    id: Number,
+    name: String
+  },
   likes: Array,
   repin: Array,
   type: Number // Image or Video
