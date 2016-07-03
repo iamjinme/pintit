@@ -5,9 +5,8 @@ var Pin = require('../models/pins.js');
 
 function PintIt () {
 
-  //console.log(req.isAuthenticated());
-
   this.getPinAll = function(req, res) {
+    console.log(req.isAuthenticated());
     Pin
 	  	.find({}, { __v: false })
 	    .sort({'date': -1})
