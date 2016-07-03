@@ -29,5 +29,14 @@ pintitApp.factory('rest', function($http){
     return promise;
   }
 
+  // GET Pin User
+  rest.getPinUser = function(id) {
+    var promise = $http.get('/api/user/' + id + '/pin')
+      .then(function(response) {
+        return response.data;
+      });
+    return promise;
+  }
+
   return rest;
 });

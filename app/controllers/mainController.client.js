@@ -9,16 +9,9 @@ pintitApp.config(['$locationProvider' ,'$routeProvider',
         templateUrl: '/views/main.html',
         controller : 'mainController'
       }).
-      when('/my', {
-        templateUrl: '/views/my.html',
-        controller : 'myController',
-        resolve: {
-          "check":function(session, $location) {
-            if (!session.logged) {
-              $location.path('/');
-            }
-          }
-        }
+      when('/user/:id', {
+        templateUrl: '/views/user.html',
+        controller : 'userController'
       }).
       otherwise('/');
   }
