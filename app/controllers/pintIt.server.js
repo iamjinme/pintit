@@ -9,7 +9,7 @@ function PintIt () {
     // Or req.isAuthenticated()
 		if (req.user) {
 			var id = req.params.id;
-			Movie.findOne({ 'user.id': req.user.twitter.id, '_id': id }, function(err, result) {
+			Pin.findOne({ 'user.id': req.user.twitter.id, '_id': id }, function(err, result) {
 	    	if (err) throw err;
 				if (result) {
 					result.remove();
@@ -56,7 +56,7 @@ function PintIt () {
     				'format': 0
     			};
     	    var options = { upsert: true, new: true, setDefaultsOnInsert: true };
-    			Pin.findOneAndUpdate({ 'src': req.body.src,  'user_id': req.user.twitter.id }, pin, options, function(err, result) {
+    			Pin.findOneAndUpdate({ 'src': req.body.src,  'user.id': req.user.twitter.id }, pin, options, function(err, result) {
     				if (err) { throw err; }
     				res.json(result);
     	    });

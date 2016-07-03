@@ -38,5 +38,14 @@ pintitApp.factory('rest', function($http){
     return promise;
   }
 
+  // DELETE Pin User
+  rest.delPin = function(id) {
+    var promise = $http.delete('/api/pin/' + id)
+      .then(function(response) {
+        return response.data;
+      });
+    return promise;
+  }
+
   return rest;
 });
