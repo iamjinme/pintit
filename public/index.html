@@ -20,7 +20,7 @@
 					<a href="#/" class="navbar-brand hide-sm">PintIt</a>
 				</section>
 				<section class="navbar-section">
-					<a ng-hide="!login.in" href="#/user/8877362" class="btn btn-link">My Wall</a>
+					<a ng-hide="!login.in" href="#/user/{{ user.twitter.id }}" class="btn btn-link">My Wall</a>
 					<a ng-hide="!login.in" ng-click="showAddPin()" class="btn btn-link tooltip tooltip-bottom" data-tooltip="Add Pin!"><i class="fa fa-plus-circle"></i></a>
 					<span ng-hide="login.in">Welcome, Do I know you?</span>
 					<span ng-hide="!login.in">Welcome, {{ user.twitter.name }}!</span>
