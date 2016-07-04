@@ -1,5 +1,6 @@
 // Add Pin Controller
 pintitApp.controller('addController', function addController($scope, $http, rest) {
+  var socket = io();
   $scope.add_message = '';
   $scope.img_src = '/public/img/blank.png';
   // Clear buttons
@@ -36,6 +37,7 @@ pintitApp.controller('addController', function addController($scope, $http, rest
         $scope.add_message = data.message;
         $('#add_message').removeClass('hide');
       } else {
+        socket.emit('push', data);
         $('#add_message').addClass('hide');
         $('#add_modal').removeClass('active');
       }

@@ -18,15 +18,9 @@ module.exports = function (app, passport, io) {
 	// Sockets.io in real time
 	io.on('connection', function (socket) {
 		socket.on('push', function(data){
-			console.log('push:', data)
-			data.code = data.code.toUpperCase();
-			ioStock.saveCode(data);
 			io.emit('push', data);
 		});
 		socket.on('pop', function(data){
-			console.log('pop:', data)
-			data.code = data.code.toUpperCase();
-			ioStock.removeCode(data);
 			io.emit('pop', data);
 		});
 	});
