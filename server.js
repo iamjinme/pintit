@@ -55,6 +55,8 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 var mongo_uri = process.env.MONGO_URI || 'mongodb://localhost/test';
 mongoose.connect(mongo_uri);
@@ -82,10 +84,10 @@ db.once('open', function() {
 	app.use('/common', express.static(process.cwd() + '/app/common'));
 	app.use('/views', express.static(process.cwd() + '/app/views'));
 
-	routes(app, passport);
+	routes(app, passport, io);
 
 	var port = process.env.PORT || 8080;
-	app.listen(port,  function () {
+	http.listen(port,  function () {
 		console.log('Node.js listening on port ' + port + '...');
 	});
 

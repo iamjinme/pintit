@@ -3,7 +3,7 @@
 var path = process.cwd();
 var PintIt = require(path + '/app/controllers/pintIt.server.js');
 
-module.exports = function (app, passport) {
+module.exports = function (app, passport, io) {
 
 	var pintIt = new PintIt();
 
@@ -14,6 +14,22 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		}
 	}
+
+	// Sockets.io in real time
+	io.on('connection', function (socket) {
+		socket.on('push', function(data){
+			console.log('push:', data)
+			data.code = data.code.toUpperCase();
+			ioStock.saveCode(data);
+			io.emit('push', data);
+		});
+		socket.on('pop', function(data){
+			console.log('pop:', data)
+			data.code = data.code.toUpperCase();
+			ioStock.removeCode(data);
+			io.emit('pop', data);
+		});
+	});
 
 	app.route('/')
 		.get(function (req, res) {
