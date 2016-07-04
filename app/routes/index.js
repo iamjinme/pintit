@@ -11,7 +11,7 @@ module.exports = function (app, passport, io) {
 		if (req.isAuthenticated()) {
 			return next();
 		} else {
-			res.redirect('/login');
+			res.json({ error: true, message: 'Unauthorized'});
 		}
 	}
 
@@ -47,7 +47,7 @@ module.exports = function (app, passport, io) {
 
 	app.route('/api/islogged')
 	  .get(function(req, res) {
-	    if (typeof req.user !== 'undefined') {
+	    if (req.isAuthenticated()) {
 	      res.json({ islogged: true, user: req.user });
 	    } else {
 	      res.json({ islogged: false });
@@ -55,10 +55,10 @@ module.exports = function (app, passport, io) {
 	  });
 
 	app.route('/api/pin')
-		.post(pintIt.addPin)
+		.post(isLoggedIn, pintIt.addPin)
 		.get(pintIt.getPinAll);
 
-	app.delete('/api/pin/:id', pintIt.delPin);
+	app.delete('/api/pin/:id', isLoggedIn, pintIt.delPin);
 
 	app.route('/api/user/:id/pin')
 		.get(pintIt.getPinUser);
