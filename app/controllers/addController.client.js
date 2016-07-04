@@ -1,6 +1,7 @@
 // Add Pin Controller
 pintitApp.controller('addController', function addController($scope, $http, rest) {
   $scope.add_message = '';
+  $scope.img_src = '/public/img/blank.png';
   // Clear buttons
   $('.btn-clear').click(function() {
     var modal = $(this).data('modal');
@@ -13,6 +14,14 @@ pintitApp.controller('addController', function addController($scope, $http, rest
   // Close button modal
   $('#modal_close').click(function() {
     $('#add_modal').removeClass('active');
+  });
+  // Watch Source URL
+  $scope.$watch('src', function() {
+    if ($scope.src) {
+      $scope.img_src = $scope.src;
+    } else {
+      $scope.img_src = '/public/img/blank.png';
+    }
   });
   // Add Pin
   $scope.addPin = function() {

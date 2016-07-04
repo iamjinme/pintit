@@ -43,16 +43,16 @@
 					</div>
 					<div class="modal-body">
 						<div class="content">
-							<img src="/public/img/blank.png" class="img-responsive centered" />
+							<img src="{{ img_src }}" class="img-responsive centered" />
 							<br />
 							<form id="add_form">
 								<div class="form-group">
 									<label class="form-label" for="title">Title</label>
-									<input class="form-input" type="text" name="title" ng-model="title" placeholder="What about this?" />
+									<input class="form-input" ng-model="title" type="text" name="title" ng-model="title" placeholder="What about this?" />
 								</div>
 								<div class="form-group">
 									<label class="form-label" for="src">Source</label>
-									<input class="form-input" type="text" name="src" ng-model="src" placeholder="HTTP link" />
+									<input class="form-input" ng-model="src" type="text" name="src" ng-model="src" placeholder="HTTP link" />
 								</div>
 							</form>
 						</div>
