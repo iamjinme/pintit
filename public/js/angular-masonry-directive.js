@@ -28,7 +28,6 @@
                 };
 
                 scope.removeBrick = function() {
-                  console.log('remove');
                     $timeout(function() {
                         masonry.reloadItems();
                         masonry.layout();
@@ -36,12 +35,10 @@
                 };
 
                 scope.appendBricks = function(ele) {
-                  console.log('append');
                     masonry.appended(ele);
                 };
 
                 scope.$on('masonry.layout', function() {
-                  console.log('layout');
                     masonry.layout();
                 });
 
@@ -58,11 +55,11 @@
                     removeBrick = master.removeBrick,
                     appendBricks = master.appendBricks;
                 if (update) {
-                    imagesLoaded( elem.get(0), update);
+                    imagesLoaded( elem.eq(0), update);
                     elem.ready(update);
                 }
                 if (appendBricks) {
-                    imagesLoaded( elem.get(0), appendBricks(elem));
+                    imagesLoaded( elem.eq(0), appendBricks(elem));
                 }
                 scope.$on('$destroy', function() {
                     if (removeBrick) {
