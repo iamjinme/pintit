@@ -4,10 +4,15 @@ pintitApp.controller('userController', function userController($scope, $route, r
   $scope.collection = [];
   // Load Masonry Grid
   angular.element(document).ready(function () {
+    /*
+    console.log('ready');
     $('.grid').masonry({
       itemSelector: '.grid-item',
       columnWidth: 160
     });
+    $('.grid').masonry('reloadItems');
+    $('.grid').masonry('layout');
+    */
   });
   // GET User id
   var id = $route.current.params.id;
@@ -35,14 +40,11 @@ pintitApp.controller('userController', function userController($scope, $route, r
     });
     $scope.collection.splice(pos, 1);
     $scope.$apply();
-    $('.grid').masonry('reloadItems');
-    $('.grid').masonry('layout');
   });
   // Socket PUSH
   socket.on('push', function (data) {
+    console.log('push');
     $scope.collection.push(data);
     $scope.$apply();
-    $('.grid').masonry('reloadItems');
-    $('.grid').masonry('layout');
   });
 });

@@ -1,5 +1,5 @@
 // Define the app module
-var pintitApp = angular.module('pintitApp', ['ngRoute']);
+var pintitApp = angular.module('pintitApp', ['ngRoute', 'masonry']);
 // Define the configuration of app
 pintitApp.config(['$locationProvider' ,'$routeProvider',
   function config($locationProvider, $routeProvider) {
@@ -20,13 +20,6 @@ pintitApp.config(['$locationProvider' ,'$routeProvider',
 pintitApp.controller('mainController', function mainController($scope, $http, rest) {
   var socket = io();
   $scope.pins = [];
-  // Load Masonry Grid
-  angular.element(document).ready(function () {
-    $('.grid').masonry({
-      itemSelector: '.grid-item',
-      columnWidth: 160
-    });
-  });
   // Load All Pin
   rest.getPinAll().then(function(data) {
     if (!data.error) {
@@ -40,14 +33,10 @@ pintitApp.controller('mainController', function mainController($scope, $http, re
     });
     $scope.pins.splice(pos, 1);
     $scope.$apply();
-    $('.grid').masonry('reloadItems');
-    $('.grid').masonry('layout');
   });
   // Socket PUSH
   socket.on('push', function (data) {
     $scope.pins.push(data);
     $scope.$apply();
-    $('.grid').masonry('reloadItems');
-    $('.grid').masonry('layout');
   });
 });

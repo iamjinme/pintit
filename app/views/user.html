@@ -4,6 +4,7 @@
   <p class='empty-meta'>Publish your favorite pictures {and other stuff}</p>
 </div>
 <div class="grid">
+<div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".tile", "columnWidth" : 160 }'>
   <div class="grid-item" ng-repeat="pin in collection">
     <img ng-src="{{ pin.src }}" class="img-responsive" onerror="this.src='/public/img/404.jpg'"/>
     <p class="grid-title">{{ pin.title }}</p>
@@ -13,4 +14,5 @@
       <button class="btn btn-link"><i class="fa fa-retweet"></i> {{ pin.repin.length }}</button>
     </div>
   </div>
+</div>
 </div>
