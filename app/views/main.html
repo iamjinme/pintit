@@ -6,7 +6,7 @@
 <div class="grid">
 <div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".grid-item"}' >
   <div masonry-tile class="grid-item" ng-repeat="pin in pins">
-    <img ng-src="{{ pin.src }}" class="img-responsive" onerror="this.src='/public/img/404.jpg'" />
+    <img ng-src="{{ pin.src }}" data-featherlight="{{ pin.src }}" class="img-responsive" onerror="this.src='/public/img/404.jpg'" />
     <p class="grid-title">{{ pin.title }}</p>
     <div class="grid-group">
       <a class="btn btn-link" href="#/user/{{ pin.user.id }}">{{ pin.user.name }}</a>
